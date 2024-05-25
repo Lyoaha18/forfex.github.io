@@ -131,3 +131,4 @@ setInterval(() => {
 button:hover {
     animation: pulse 0.5s infinite alternate;
 }
+
