@@ -1,71 +1,129 @@
-/* Стили для кнопок */
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    margin: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    color: #ffffff; /* Белый текст */
-    background-color: transparent; /* Прозрачный фон */
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clicker Game</title>
+    <style>
+        /* Стили для элемента достижения */
+        .achievement {
+            background-color: #1e1e1e; /* Темный фон */
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            color: #ffffff; /* Белый текст для достижений */
+            font-weight: bold; /* Жирный шрифт для текста достижений */
+        }
 
-button#click-button {
-    background-color: transparent;
-}
+        /* Стили для контейнера */
+        .container {
+            text-align: center;
+            background: #1e1e1e; /* Темный фон */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            color: #ffffff; /* Белый текст */
+        }
 
-button#upgrade-button {
-    background-color: transparent;
-}
+        /* Стили для кнопок */
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #ffffff; /* Белый текст */
+        }
 
-button#autoclicker-button {
-    background-color: transparent;
-}
+        button#click-button {
+            background-color: #007bff;
+        }
 
-/* Стили для анимации мигания кнопок */
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.1);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
+        button#upgrade-button {
+            background-color: #28a745;
+        }
 
-button:hover {
-    animation: pulse 0.5s infinite alternate;
-}
+        button#autoclicker-button {
+            background-color: #ff5733;
+        }
+        
+        /* Стили для анимации мигания кнопок */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
 
-/* Дополнительные стили из моего CSS */
+        button:hover {
+            animation: pulse 0.5s infinite alternate;
+        }
 
-/* Стили для видео в качестве заднего фона */
-#background-video {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
-}
+        /* Стили для увеличенной монеты */
+        .coin-button img {
+            width: 200px; /* Увеличиваем ширину монеты */
+            height: 200px; /* Увеличиваем высоту монеты */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Clicker Game</h1>
+        <p>Clicks: <span id="click-count">0</span></p>
+        <button id="click-button" class="coin-button">
+            <img src="images/coin.png" alt="Click me!">
+        </button>
+        <p>Click Power: <span id="click-power">1</span></p>
+        <button id="upgrade-button">Upgrade (Cost: <span id="upgrade-cost">10</span>)</button>
+        <p>Autoclicker: <span id="autoclicker-count">0</span></p>
+        <button id="autoclicker-button">Buy Autoclicker (Cost: <span id="autoclicker-cost">100</span>)</button>
+    </div>
+    <!-- Добавленный элемент для отображения достижений -->
+    <div id="achievement-box"></div>
+    <script>
+        // JavaScript код
+        let clickCount = 0;
+        let clickPower = 1;
+        let upgradeCost = 10;
+        let autoclickerCost = 100;
+        let autoclickerCount = 0;
+        let achievementUnlocked = false;
 
-/* Стили для кнопки монетки */
-.coin-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-}
+        // Функция для обновления отображаемых значений
+        function updateDisplay() {
+            document.getElementById('click-count').textContent = clickCount;
+            document.getElementById('click-power').textContent = clickPower;
+            document.getElementById('upgrade-cost').textContent = upgradeCost;
+            document.getElementById('autoclicker-cost').textContent = autoclickerCost;
+            document.getElementById('autoclicker-count').textContent = autoclickerCount;
+        }
 
-.coin-button img {
-    width: 200px;
-    height: 200px;
-}
+        // Функция для проверки достижений
+        function checkAchievements() {
+            if (clickCount >= 1000 && !achievementUnlocked) {
+                const achievementBox = document.getElementById('achievement-box');
+                const newAchievement = document.createElement('div');
+                newAchievement.classList.add('achievement');
+                newAchievement.textContent = 'НОВОЕ ДОСТИЖЕНИЕ: ЕБАТЬ ТЫ КЛИКОДОЛБИК НАКЛИКАЛ 1000 раз!';
+                achievementBox.appendChild(newAchievement);
+                achievementUnlocked = true;
+            }
+        }
 
-/* Установка шрифта Roboto с жирным начертанием */
-body, html {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 700; /* Делаем текст жирным */
-}
+        document.getElementById('click-button').addEventListener('click', () => {
+            clickCount += clickPower;
+            updateDisplay();
+            checkAchievements();
+        });
+
+        document.getElementById('upgrade-button').addEventListener('click', () => {
+            if (clickCount >= upgradeCost)
+    </script>
+</body>
+</html>
