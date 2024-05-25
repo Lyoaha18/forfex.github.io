@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clicker Game</title>
-    <link rel="stylesheet" href="style.css">
     <style>
         body, html {
             margin: 0;
@@ -31,10 +30,27 @@
             position: relative;
             z-index: 1;
             background-color: rgba(0, 0, 0, 0);
-            height: 100vh; /* Занимает 100% высоты видимой области */
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
+        }
+
+        /* Стили для анимации мигания кнопок */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        button:hover {
+            animation: pulse 0.5s infinite alternate;
         }
     </style>
 </head>
