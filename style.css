@@ -47,7 +47,7 @@
         button#autoclicker-button {
             background-color: #ff5733;
         }
-        
+
         /* Стили для анимации мигания кнопок */
         @keyframes pulse {
             0% {
@@ -69,6 +69,7 @@
         .coin-button img {
             width: 200px; /* Увеличиваем ширину монеты */
             height: 200px; /* Увеличиваем высоту монеты */
+            background: none; /* Убираем фон */
         }
     </style>
 </head>
@@ -123,7 +124,38 @@
         });
 
         document.getElementById('upgrade-button').addEventListener('click', () => {
-            if (clickCount >= upgradeCost)
+            if (clickCount >= upgradeCost) {
+                clickCount -= upgradeCost;
+                clickPower += 1;
+                upgradeCost = Math.floor(upgradeCost * 1.5);
+                updateDisplay();
+            } else {
+                alert('Not enough clicks to upgrade!');
+            }
+        });
+
+        document.getElementById('autoclicker-button').addEventListener('click', () => {
+            if (clickCount >= autoclickerCost) {
+                clickCount -= autoclickerCost;
+                autoclickerCount += 1;
+                autoclickerCost *= 10;
+                updateDisplay();
+            } else {
+                alert('Not enough clicks to buy autoclicker!');
+            }
+        });
+
+        // Устанавливаем интервал для автокликеров
+        setInterval(() => {
+            if (autoclickerCount > 0) {
+                clickCount += autoclickerCount;
+                updateDisplay();
+                checkAchievements();
+            }
+        }, 1000);
+
+        // Изначально обновляем отображение
+        updateDisplay();
     </script>
 </body>
 </html>
