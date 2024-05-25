@@ -11,7 +11,6 @@ function updateDisplay() {
     document.getElementById('upgrade-cost').textContent = upgradeCost;
     document.getElementById('autoclicker-cost').textContent = autoclickerCost;
     document.getElementById('autoclicker-count').textContent = autoclickerCount;
-    document.getElementById('autoclicker-button').innerHTML = `Buy Autoclicker (Cost: <span id="autoclicker-cost">${autoclickerCost}</span>)`;
 }
 
 document.getElementById('click-button').addEventListener('click', () => {
@@ -35,6 +34,7 @@ document.getElementById('autoclicker-button').addEventListener('click', () => {
         clickCount -= autoclickerCost;
         autoclickerCount += 1;
         autoclickerCost *= 10;  // Увеличиваем стоимость автокликера в 10 раз
+        document.getElementById('autoclicker-button').value = `Buy Autoclicker (Cost: ${autoclickerCost})`;
         updateDisplay();
     } else {
         alert('Not enough clicks to buy autoclicker!');
