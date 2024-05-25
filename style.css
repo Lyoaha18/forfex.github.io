@@ -35,3 +35,8 @@ button#upgrade-button {
     background-color: #28a745;
     color: white;
 }
+
+button#autoclicker-button {
+    background-color: #ff5733;
+    color: white;
+}
