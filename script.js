@@ -33,7 +33,7 @@ document.getElementById('autoclicker-button').addEventListener('click', () => {
     if (clickCount >= autoclickerCost) {
         clickCount -= autoclickerCost;
         autoclickerCount += 1;
-        autoclickerCost *= 10;
+        autoclickerCost = Math.floor(autoclickerCost * 10);
         updateDisplay();
     } else {
         alert('Not enough clicks to buy autoclicker!');
