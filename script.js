@@ -11,7 +11,7 @@ function updateDisplay() {
     document.getElementById('upgrade-cost').textContent = upgradeCost;
     document.getElementById('autoclicker-cost').textContent = autoclickerCost;
     document.getElementById('autoclicker-count').textContent = autoclickerCount;
-    document.getElementById('autoclicker-button').textContent = `Buy Autoclicker (Cost: ${autoclickerCost})`;
+    document.getElementById('autoclicker-button').innerHTML = `Buy Autoclicker (Cost: <span id="autoclicker-cost">${autoclickerCost}</span>)`;
 }
 
 document.getElementById('click-button').addEventListener('click', () => {
