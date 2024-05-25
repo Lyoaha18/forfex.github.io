@@ -5,6 +5,7 @@ let autoclickerCost = 100;
 let autoclickerCount = 0;
 let achievementUnlocked = false;
 
+// Функция для обновления отображаемых значений
 function updateDisplay() {
     document.getElementById('click-count').textContent = clickCount;
     document.getElementById('click-power').textContent = clickPower;
@@ -13,6 +14,7 @@ function updateDisplay() {
     document.getElementById('autoclicker-count').textContent = autoclickerCount;
 }
 
+// Функция для проверки достижений
 function checkAchievements() {
     if (clickCount >= 1000 && !achievementUnlocked) {
         const achievementBox = document.getElementById('achievement-box');
@@ -52,6 +54,7 @@ document.getElementById('autoclicker-button').addEventListener('click', () => {
     }
 });
 
+// Устанавливаем интервал для автокликеров
 setInterval(() => {
     if (autoclickerCount > 0) {
         clickCount += autoclickerCount;
@@ -59,3 +62,7 @@ setInterval(() => {
         checkAchievements();
     }
 }, 1000);
+
+// Изначально обновляем отображение
+updateDisplay();
+
