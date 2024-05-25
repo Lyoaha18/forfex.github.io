@@ -53,6 +53,17 @@
             background-color: #007bff; /* Цвет фона кнопок */
         }
 
+        .coin-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .coin-button img {
+            width: 100px;
+            height: 100px;
+        }
+
         /* Стили для анимации мигания кнопок */
         @keyframes pulse {
             0% {
@@ -66,7 +77,7 @@
             }
         }
 
-        button:hover {
+        button:hover, .coin-button:hover img {
             animation: pulse 0.5s infinite alternate;
         }
     </style>
@@ -81,7 +92,9 @@
     <div class="container">
         <h1>Clicker Game</h1>
         <p>Clicks: <span id="click-count">0</span></p>
-        <button id="click-button">Click me!</button>
+        <button id="click-button" class="coin-button">
+            <img src="images/coin.png" alt="Click me!">
+        </button>
         <p>Click Power: <span id="click-power">1</span></p>
         <button id="upgrade-button">Upgrade (Cost: <span id="upgrade-cost">10</span>)</button>
         <p>Autoclicker: <span id="autoclicker-count">0</span></p>
