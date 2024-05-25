@@ -27,8 +27,11 @@ document.getElementById('autoclicker-button').addEventListener('click', () => {
     if (clickCount >= autoclickerCost) {
         clickCount -= autoclickerCost;
         autoclickerCount += 1;
+        autoclickerCost *= 10;
+
         document.getElementById('click-count').textContent = clickCount;
         document.getElementById('autoclicker-count').textContent = autoclickerCount;
+        document.getElementById('autoclicker-cost').textContent = autoclickerCost;
 
         setInterval(() => {
             clickCount += autoclickerCount;
