@@ -31,24 +31,22 @@
             color: rgba(255, 255, 255, 0.8);
             position: relative;
             z-index: 1;
-            background-color: rgba(0, 0, 0, 0);
             height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center; /* Выравнивание по центру по горизонтали */
+            align-items: center;
         }
 
-        /* Стили для кнопок */
         button {
-            padding: 10px 20px; /* Возвращаем стандартные размеры кнопок */
+            padding: 10px 20px;
             font-size: 16px;
             margin: 10px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            color: #ffffff; /* Белый текст */
-            background-color: #28a745; /* Цвет фона кнопок */
+            color: #ffffff;
+            background-color: #28a745;
         }
 
         .coin-button {
@@ -56,15 +54,14 @@
             border: none;
             cursor: pointer;
             padding: 0;
-            margin: 0;
+            margin: 10px;
         }
 
         .coin-button img {
-            width: 150px; /* Увеличиваем размер монеты */
-            height: 150px; /* Увеличиваем размер монеты */
+            width: 150px;
+            height: 150px;
         }
 
-        /* Стили для анимации мигания кнопок */
         @keyframes pulse {
             0% {
                 transform: scale(1);
@@ -83,7 +80,6 @@
     </style>
 </head>
 <body>
-    <!-- Видео в качестве заднего фона -->
     <video autoplay muted loop id="background-video">
         <source src="video/fon.mp4" type="video/mp4">
         Your browser does not support the video tag.
@@ -100,8 +96,8 @@
         <p>Autoclicker: <span id="autoclicker-count">0</span></p>
         <button id="autoclicker-button">Buy Autoclicker (Cost: <span id="autoclicker-cost">100</span>)</button>
     </div>
-    <!-- Добавленный элемент для отображения достижений -->
     <div id="achievement-box"></div>
     <script src="script.js"></script>
 </body>
 </html>
+
