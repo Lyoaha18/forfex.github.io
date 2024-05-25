@@ -17,6 +17,7 @@ const styles = `
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    color: #ffffff; /* Белый текст */
 }
 
 /* Стили для кнопок */
@@ -27,21 +28,19 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    color: #ffffff; /* Белый текст */
 }
 
 button#click-button {
     background-color: #007bff;
-    color: white;
 }
 
 button#upgrade-button {
     background-color: #28a745;
-    color: white;
 }
 
 button#autoclicker-button {
     background-color: #ff5733;
-    color: white;
 }
 `;
 
