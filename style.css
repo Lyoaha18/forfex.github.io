@@ -118,7 +118,7 @@ setInterval(() => {
 // Стили для анимации клика
 @keyframes ripple {
     0% {
-        transform: scale(1);
+        transform: scale(0);
         opacity: 1;
     }
     100% {
@@ -128,5 +128,5 @@ setInterval(() => {
 }
 
 button#click-button:hover {
-    animation: ripple 0.5s ease-out;
+    animation: ripple 0.5s linear forwards;
 }
