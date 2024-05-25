@@ -47,6 +47,7 @@
             cursor: pointer;
             color: #ffffff;
             background-color: #28a745;
+            font-family: 'Roboto', sans-serif;
         }
 
         .coin-button {
@@ -80,6 +81,7 @@
     </style>
 </head>
 <body>
+    <!-- Видео в качестве заднего фона -->
     <video autoplay muted loop id="background-video">
         <source src="video/fon.mp4" type="video/mp4">
         Your browser does not support the video tag.
@@ -96,8 +98,8 @@
         <p>Autoclicker: <span id="autoclicker-count">0</span></p>
         <button id="autoclicker-button">Buy Autoclicker (Cost: <span id="autoclicker-cost">100</span>)</button>
     </div>
+    <!-- Добавленный элемент для отображения достижений -->
     <div id="achievement-box"></div>
     <script src="script.js"></script>
 </body>
 </html>
-
