@@ -5,6 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clicker Game</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Чтобы видео занимало всю видимую область */
+        }
+
+        /* Стили для видео в качестве заднего фона */
+        #background-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%; 
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1000; /* Помещаем видео за все элементы контента */
+        }
+
+        .container {
+            position: relative; /* Чтобы контейнер с контентом находился поверх видео */
+            z-index: 1;
+            padding: 20px;
+            text-align: center;
+            color: white; /* Белый текст */
+        }
+    </style>
 </head>
 <body>
     <!-- Видео в качестве заднего фона -->
@@ -27,3 +54,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+
