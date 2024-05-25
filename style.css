@@ -35,8 +35,30 @@ button#autoclicker-button {
     }
 }
 
-button:hover {
+button:hover:not(.coin-button) img {
     animation: pulse 0.5s infinite alternate;
+}
+
+/* Стили для кнопки монетки */
+.coin-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.coin-button img {
+    width: 300px;
+    height: 300px;
+}
+
+.coin-button img:hover {
+    transform: scale(0.9);
+    transition: transform 0.1s ease-in-out;
+}
+
+.coin-button img:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease-in-out;
 }
 
 /* Дополнительные стили из моего CSS */
@@ -50,18 +72,6 @@ button:hover {
     height: 100%;
     object-fit: cover;
     z-index: -1;
-}
-
-/* Стили для кнопки монетки */
-.coin-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-.coin-button img {
-    width: 300px;
-    height: 300px;
 }
 
 /* Установка шрифта Roboto с жирным начертанием */
