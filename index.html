@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,7 +6,13 @@
     <title>Clicker Game</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body style="background-color: #121212;"> <!-- Темный задний фон -->
+<body>
+    <!-- Видео в качестве заднего фона -->
+    <video autoplay muted loop id="background-video">
+        <source src="videos/fon.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
     <div class="container">
         <h1>Clicker Game</h1>
         <p>Clicks: <span id="click-count">0</span></p>
