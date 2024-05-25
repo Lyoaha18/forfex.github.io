@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clicker Game</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap">
     <style>
         body, html {
             margin: 0;
@@ -13,6 +14,7 @@
             height: 100%;
             background-color: transparent;
             font-family: 'Roboto', sans-serif;
+            font-weight: 700; /* Делаем текст жирным */
         }
 
         #background-video {
@@ -31,38 +33,38 @@
             color: rgba(255, 255, 255, 0.8);
             position: relative;
             z-index: 1;
+            background-color: rgba(0, 0, 0, 0);
             height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
+            align-items: center; /* Выравнивание по центру по горизонтали */
         }
 
+        /* Стили для кнопок */
         button {
-            padding: 10px 20px;
+            padding: 10px 20px; /* Возвращаем стандартные размеры кнопок */
             font-size: 16px;
             margin: 10px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            color: #ffffff;
-            background-color: #28a745;
-            font-family: 'Roboto', sans-serif;
+            color: #ffffff; /* Белый текст */
+            background-color: #007bff; /* Цвет фона кнопок */
         }
 
         .coin-button {
             background: none;
             border: none;
             cursor: pointer;
-            padding: 0;
-            margin: 10px;
         }
 
         .coin-button img {
-            width: 150px;
-            height: 150px;
+            width: 100px;
+            height: 100px;
         }
 
+        /* Стили для анимации мигания кнопок */
         @keyframes pulse {
             0% {
                 transform: scale(1);
@@ -103,3 +105,5 @@
     <script src="script.js"></script>
 </body>
 </html>
+
+
