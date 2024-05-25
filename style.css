@@ -110,9 +110,9 @@ document.getElementById('autoclicker-button').addEventListener('click', () => {
 setInterval(() => {
     if (autoclickerCount > 0) {
         clickCount += autoclickerCount;
-        updateDisplay();
-        checkAchievements();
-    }
+updateDisplay();
+checkAchievements();
+}
 }, 1000);
 
 // Изначально обновляем отображение
