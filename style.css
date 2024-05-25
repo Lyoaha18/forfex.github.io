@@ -125,8 +125,3 @@ checkAchievements();
 button#click-button:hover {
   animation: ripple 0.5s linear forwards;
 }
-
-}, 1000);
-
-// Изначально обновляем отображение
-updateDisplay();
