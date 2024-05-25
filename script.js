@@ -3,6 +3,7 @@ let clickPower = 1;
 let upgradeCost = 10;
 let autoclickerCost = 100;
 let autoclickerCount = 0;
+let achievementUnlocked = false;
 
 // Функция для обновления отображаемых значений
 function updateDisplay() {
@@ -13,9 +14,22 @@ function updateDisplay() {
     document.getElementById('autoclicker-count').textContent = autoclickerCount;
 }
 
+// Функция для проверки достижений
+function checkAchievements() {
+    if (clickCount >= 1000 && !achievementUnlocked) {
+        const achievementBox = document.getElementById('achievement-box');
+        const newAchievement = document.createElement('div');
+        newAchievement.classList.add('achievement');
+        newAchievement.textContent = 'НОВОЕ ДОСТИЖЕНИЕ: ЕБАТЬ ТЫ КЛИКОДОЛБИК НАКЛИКАЛ 1000 раз!';
+        achievementBox.appendChild(newAchievement);
+        achievementUnlocked = true;
+    }
+}
+
 document.getElementById('click-button').addEventListener('click', () => {
     clickCount += clickPower;
     updateDisplay();
+    checkAchievements();
 });
 
 document.getElementById('upgrade-button').addEventListener('click', () => {
@@ -33,8 +47,7 @@ document.getElementById('autoclicker-button').addEventListener('click', () => {
     if (clickCount >= autoclickerCost) {
         clickCount -= autoclickerCost;
         autoclickerCount += 1;
-        autoclickerCost *= 10;  // Увеличиваем стоимость автокликера в 10 раз
-        document.getElementById('autoclicker-button').value = `Buy Autoclicker (Cost: ${autoclickerCost})`;
+        autoclickerCost *= 10;
         updateDisplay();
     } else {
         alert('Not enough clicks to buy autoclicker!');
@@ -46,6 +59,7 @@ setInterval(() => {
     if (autoclickerCount > 0) {
         clickCount += autoclickerCount;
         updateDisplay();
+        checkAchievements();
     }
 }, 1000);
 
