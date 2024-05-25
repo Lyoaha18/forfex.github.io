@@ -116,21 +116,17 @@ setInterval(() => {
 }, 1000);
 
 // Стили для анимации клика
-const rippleStyles = `
 @keyframes ripple {
-    to {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
         transform: scale(2.5);
         opacity: 0;
     }
 }
 
 button#click-button:hover {
-    animation: ripple 0.5s linear forwards;
+    animation: ripple 0.5s ease-out;
 }
-`;
-
-// Добавляем стили анимации клика
-styleElement.textContent += rippleStyles;
-
-// Изначально обновляем отображение
-updateDisplay();
