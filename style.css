@@ -110,18 +110,27 @@ document.getElementById('autoclicker-button').addEventListener('click', () => {
 setInterval(() => {
     if (autoclickerCount > 0) {
         clickCount += autoclickerCount;
-updateDisplay();
-checkAchievements();
-}/* Ваши стили CSS */
+        updateDisplay();
+        checkAchievements();
+    }
+}, 1000);
 
-/* Стили для анимации клика */
+// Стили для анимации клика
+const rippleStyles = `
 @keyframes ripple {
-  to {
-    transform: scale(2.5);
-    opacity: 0;
-  }
+    to {
+        transform: scale(2.5);
+        opacity: 0;
+    }
 }
 
 button#click-button:hover {
-  animation: ripple 0.5s linear forwards;
+    animation: ripple 0.5s linear forwards;
 }
+`;
+
+// Добавляем стили анимации клика
+styleElement.textContent += rippleStyles;
+
+// Изначально обновляем отображение
+updateDisplay();
