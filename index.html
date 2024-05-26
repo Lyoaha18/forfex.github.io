@@ -14,7 +14,7 @@
         Your browser does not support the video tag.
     </video>
 
-    <div class="container">
+    <div class="container" id="main-screen">
         <h1>Clicker Game</h1>
         <div class="balance-box">
             <p>Баланс: <span id="click-count">0</span></p>
@@ -26,8 +26,19 @@
             <button id="upgrade-button">Upgrade (Cost: <span id="upgrade-cost">10</span>)</button>
             <button id="autoclicker-button">Buy Autoclicker (Cost: <span id="autoclicker-cost">100</span>)</button>
         </div>
+        <div class="navigation-buttons">
+            <button id="mine-button">Mine</button>
+            <button id="home-button" style="display:none;">Домой</button>
+        </div>
         <p>Click Power: <span id="click-power">1</span></p>
         <p>Autoclicker: <span id="autoclicker-count">0</span></p>
+    </div>
+    <div class="container" id="mine-screen" style="display: none;">
+        <h1>Улучшения</h1>
+        <!-- Здесь можно добавить контент для улучшений -->
+        <div class="navigation-buttons">
+            <button id="home-button-mine">Домой</button>
+        </div>
     </div>
     <!-- Добавленный элемент для отображения достижений -->
     <div id="achievement-box"></div>
