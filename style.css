@@ -36,7 +36,7 @@ button#autoclicker-button {
 }
 
 button:hover:not(.coin-button) img {
-    animation: pulse 0.5s infinite alternate;
+    animation: none; /* Убираем анимацию мигания для изображения монеты */
 }
 
 /* Стили для кнопки монетки */
@@ -79,3 +79,4 @@ body, html {
     font-family: 'Roboto', sans-serif;
     font-weight: 700; /* Делаем текст жирным */
 }
+
