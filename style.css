@@ -10,33 +10,8 @@ button {
     background-color: transparent; /* Прозрачный фон */
 }
 
-button#click-button {
-    background-color: transparent;
-}
-
-button#upgrade-button {
-    background-color: transparent;
-}
-
-button#autoclicker-button {
-    background-color: transparent;
-}
-
-/* Стили для анимации мигания кнопок */
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.1);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-button:hover:not(.coin-button) img {
-    animation: none; /* Убираем анимацию мигания для изображения монеты */
+button img {
+    animation: none; /* Убираем анимацию мигания со всех изображений кнопок */
 }
 
 /* Стили для кнопки монетки */
@@ -79,4 +54,3 @@ body, html {
     font-family: 'Roboto', sans-serif;
     font-weight: 700; /* Делаем текст жирным */
 }
-
