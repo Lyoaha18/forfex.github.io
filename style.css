@@ -8,29 +8,32 @@ button {
     cursor: pointer;
     color: #ffffff; /* Белый текст */
     background-color: transparent; /* Прозрачный фон */
-    animation: none; /* Убираем анимацию мигания */
-    transition: transform 0.1s ease; /* Добавляем плавный переход */
+    animation: none !important; /* Убираем анимацию мигания */
 }
 
+/* Стили для кнопки монетки */
 .coin-button {
     background: none;
     border: none;
     cursor: pointer;
-    animation: none; /* Убираем анимацию мигания */
-    transition: transform 0.1s ease; /* Добавляем плавный переход */
+    animation: none !important; /* Убираем анимацию мигания */
 }
 
 .coin-button img {
     width: 300px;
     height: 300px;
-    animation: none; /* Убираем анимацию мигания */
-    transition: transform 0.1s ease; /* Добавляем плавный переход */
+    animation: none !important; /* Убираем анимацию мигания */
 }
 
-/* Переопределение стилей для кнопок и изображений при нажатии */
+/* Переопределение стилей для кнопок и изображений при наведении и активации */
+button:hover,
 button:active,
-.coin-button:active img {
-    transform: scale(0.95); /* Эффект продавливания */
+.coin-button:hover,
+.coin-button:active,
+.coin-button img:hover,
+.coin-button img:active {
+    animation: none !important; /* Убираем анимацию мигания */
+    transform: none !important; /* Убираем трансформации */
 }
 
 /* Дополнительные стили из моего CSS */
