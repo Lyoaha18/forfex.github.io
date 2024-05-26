@@ -10,10 +10,6 @@ button {
     background-color: transparent; /* Прозрачный фон */
 }
 
-.coin-button img {
-    animation: none; /* Убираем анимацию мигания только для изображений кнопок монеты */
-}
-
 /* Стили для кнопки монетки */
 .coin-button {
     background: none;
@@ -26,7 +22,10 @@ button {
     height: 300px;
 }
 
-
+.coin-button img:hover,
+.coin-button img:active {
+    animation: none; /* Убираем анимацию мигания только для изображений кнопок монеты при наведении и активации */
+}
 
 /* Дополнительные стили из моего CSS */
 
@@ -46,4 +45,3 @@ body, html {
     font-family: 'Roboto', sans-serif;
     font-weight: 700; /* Делаем текст жирным */
 }
-
