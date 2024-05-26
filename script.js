@@ -1,4 +1,4 @@
-llet clickCount = 0;
+let clickCount = 0;
 let clickPower = 1;
 let upgradeCost = 10;
 let autoclickerCost = 100;
