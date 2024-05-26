@@ -22,11 +22,10 @@ button {
     height: 300px;
 }
 
-/* Переопределение стилей для изображения монеты при наведении и активации */
+/* Отключаем взаимодействие с изображением монеты при наведении и активации */
 .coin-button img:hover,
 .coin-button img:active {
-    animation: none !important;
-    transform: scale(1) !important;
+    pointer-events: none;
 }
 
 /* Дополнительные стили из моего CSS */
