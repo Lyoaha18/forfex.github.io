@@ -26,29 +26,26 @@ function checkAchievements() {
     }
 }
 
-// Функция для создания и анимации маленькой монетки
-function createFallingCoin(x, y) {
-    const fallingCoin = document.createElement('img');
-    fallingCoin.src = 'images/coin.png';
-    fallingCoin.classList.add('falling-coin');
-    fallingCoin.style.left = `${x}px`;
-    fallingCoin.style.top = `${y}px`;
-    document.getElementById('falling-coins-container').appendChild(fallingCoin);
-
-    // Удаляем монетку после завершения анимации
-    fallingCoin.addEventListener('animationend', () => {
-        fallingCoin.remove();
-    });
+// Функция для создания падающей монетки
+function createCoin() {
+    const coin = document.createElement('div');
+    coin.classList.add('coin');
+    coin.innerHTML = '<img src="images/coin.png" alt="Coin">';
+    document.getElementById('falling-coins-container').appendChild(coin);
+    setTimeout(() => {
+        coin.style.top = '100%';
+    }, 100);
+    setTimeout(() => {
+        coin.remove();
+    }, 2000);
 }
 
-document.getElementById('click-button').addEventListener('click', (event) => {
+// Обработчик клика по монетке
+document.getElementById('click-button').addEventListener('click', () => {
     clickCount += clickPower;
     updateDisplay();
     checkAchievements();
-    // Создаем и анимируем маленькую монетку при нажатии
-    const x = event.clientX;
-    const y = event.clientY;
-    createFallingCoin(x, y);
+    createCoin();
 });
 
 document.getElementById('upgrade-button').addEventListener('click', () => {
@@ -79,6 +76,7 @@ setInterval(() => {
         clickCount += autoclickerCount;
         updateDisplay();
         checkAchievements();
+        createCoin();
     }
 }, 1000);
 
