@@ -65,6 +65,12 @@ button {
     margin: 20px 0;
 }
 
+.navigation-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
 /* Стили для кнопки монетки */
 .coin-button {
     background: none;
@@ -118,4 +124,3 @@ button:active {
     height: 100%;
     pointer-events: none;
 }
-
