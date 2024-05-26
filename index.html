@@ -51,34 +51,79 @@
             cursor: pointer;
             color: #ffffff; /* Белый текст */
             background-color: #007bff; /* Цвет фона кнопок */
+            transition: transform 0.1s ease; /* Добавляем плавный переход */
         }
 
         .coin-button {
             background: none;
             border: none;
             cursor: pointer;
+            transition: transform 0.1s ease; /* Добавляем плавный переход */
         }
 
         .coin-button img {
             width: 300px;
             height: 300px;
+            transition: transform 0.1s ease; /* Добавляем плавный переход */
         }
 
-        /* Стили для анимации мигания кнопок */
-        @keyframes pulse {
+        /* Убираем анимацию мигания */
+        button:hover, button:active, .coin-button:hover, .coin-button:active, .coin-button img:hover, .coin-button img:active {
+            animation: none !important; /* Убираем анимацию мигания */
+        }
+
+        /* Эффект продавливания при нажатии */
+        button:active {
+            transform: scale(0.95); /* Эффект продавливания */
+        }
+
+        .coin-button:active img {
+            transform: scale(0.95); /* Эффект продавливания */
+        }
+
+        /* Стили для анимации падения маленькой монетки */
+        @keyframes fall {
             0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.1);
+                opacity: 1;
+                transform: translateY(0);
             }
             100% {
-                transform: scale(1);
+                opacity: 0;
+                transform: translateY(100vh);
             }
         }
 
-        button:hover, .coin-button:hover img {
-            animation: pulse 0.5s infinite alternate;
+        .falling-coin {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            animation: fall 1s linear forwards;
+        }
+
+        /* Дополнительные стили из моего CSS */
+        #falling-coins-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Игнорировать события мыши */
+        }
+
+        #background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        /* Установка шрифта Roboto с жирным начертанием */
+        body, html {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700; /* Делаем текст жирным */
         }
     </style>
 </head>
@@ -102,6 +147,8 @@
     </div>
     <!-- Добавленный элемент для отображения достижений -->
     <div id="achievement-box"></div>
+    <!-- Контейнер для падающих монеток -->
+    <div id="falling-coins-container"></div>
     <script src="script.js"></script>
 </body>
 </html>
