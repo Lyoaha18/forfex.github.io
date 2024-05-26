@@ -22,10 +22,11 @@ button {
     height: 300px;
 }
 
-/* Убираем анимацию мигания только для изображений кнопок монеты при наведении и активации */
+/* Переопределение стилей для изображения монеты при наведении и активации */
 .coin-button img:hover,
 .coin-button img:active {
     animation: none !important;
+    transform: scale(1) !important;
 }
 
 /* Дополнительные стили из моего CSS */
