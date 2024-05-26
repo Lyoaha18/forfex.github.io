@@ -28,6 +28,7 @@ function checkAchievements() {
 
 // Функция для создания падающей монетки
 function createCoin() {
+    console.log('Creating coin...');
     const coin = document.createElement('div');
     coin.classList.add('coin');
     coin.innerHTML = '<img src="images/coin.png" alt="Coin">';
@@ -42,6 +43,7 @@ function createCoin() {
 
 // Обработчик клика по монетке
 document.getElementById('click-button').addEventListener('click', () => {
+    console.log('Clicking button...');
     clickCount += clickPower;
     updateDisplay();
     checkAchievements();
@@ -49,6 +51,7 @@ document.getElementById('click-button').addEventListener('click', () => {
 });
 
 document.getElementById('upgrade-button').addEventListener('click', () => {
+    console.log('Upgrading...');
     if (clickCount >= upgradeCost) {
         clickCount -= upgradeCost;
         clickPower += 1;
@@ -60,6 +63,7 @@ document.getElementById('upgrade-button').addEventListener('click', () => {
 });
 
 document.getElementById('autoclicker-button').addEventListener('click', () => {
+    console.log('Buying autoclicker...');
     if (clickCount >= autoclickerCost) {
         clickCount -= autoclickerCost;
         autoclickerCount += 1;
