@@ -1,4 +1,4 @@
-let clickCount = 0;
+llet clickCount = 0;
 let clickPower = 1;
 let upgradeCost = 10;
 let autoclickerCost = 100;
@@ -26,10 +26,30 @@ function checkAchievements() {
     }
 }
 
-document.getElementById('click-button').addEventListener('click', () => {
+// Функция для создания и анимации маленькой монетки
+function createFallingCoin(x, y) {
+    const fallingCoin = document.createElement('img');
+    fallingCoin.src = 'images/coin.png';
+    fallingCoin.classList.add('falling-coin');
+    fallingCoin.style.left = `${x}px`;
+    fallingCoin.style.top = `${y}px`;
+    document.getElementById('falling-coins-container').appendChild(fallingCoin);
+
+    // Удаляем монетку после завершения анимации
+    fallingCoin.addEventListener('animationend', () => {
+        fallingCoin.remove();
+    });
+}
+
+document.getElementById('click-button').addEventListener('click', (event) => {
     clickCount += clickPower;
     updateDisplay();
     checkAchievements();
+    // Создаем и анимируем маленькую монетку при нажатии
+    const rect = event.target.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    createFallingCoin(x, y);
 });
 
 document.getElementById('upgrade-button').addEventListener('click', () => {
