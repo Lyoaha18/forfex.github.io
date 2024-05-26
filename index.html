@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clicker Game</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap">
 </head>
 <body>
     <!-- Видео в качестве заднего фона -->
@@ -15,7 +16,10 @@
 
     <div class="container">
         <h1>Clicker Game</h1>
-        <p>Clicks: <span id="click-count">0</span></p>
+        <!-- Окно баланса -->
+        <div id="balance-window">
+            Balance: <span id="balance">0</span>
+        </div>
         <button id="click-button" class="coin-button">
             <img src="images/coin.png" alt="Click me!" draggable="false">
         </button>
@@ -28,10 +32,6 @@
     <div id="achievement-box"></div>
     <!-- Контейнер для падающих монеток -->
     <div id="falling-coins-container"></div>
-    <!-- Окно баланса -->
-    <div id="balance-window">
-        <span id="balance">0</span>
-    </div>
     <script src="script.js"></script>
 </body>
 </html>
