@@ -33,6 +33,16 @@ body, html {
     align-items: center;
 }
 
+/* Стили для рамочки баланса */
+.balance-box {
+    border: 2px solid white;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
 /* Стили для кнопок */
 button {
     padding: 10px 20px;
