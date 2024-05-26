@@ -10,8 +10,8 @@ button {
     background-color: transparent; /* Прозрачный фон */
 }
 
-button img {
-    animation: none; /* Убираем анимацию мигания со всех изображений кнопок */
+.coin-button img {
+    animation: none; /* Убираем анимацию мигания только для изображений кнопок монеты */
 }
 
 /* Стили для кнопки монетки */
@@ -54,3 +54,4 @@ body, html {
     font-family: 'Roboto', sans-serif;
     font-weight: 700; /* Делаем текст жирным */
 }
+
