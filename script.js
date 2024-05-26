@@ -1,4 +1,4 @@
-let clickCount = 0;
+let balance = 0;
 let clickPower = 1;
 let upgradeCost = 10;
 let autoclickerCost = 100;
@@ -7,7 +7,7 @@ let achievementUnlocked = false;
 
 // Функция для обновления отображаемых значений
 function updateDisplay() {
-    document.getElementById('click-count').textContent = clickCount;
+    document.getElementById('click-count').textContent = balance;
     document.getElementById('click-power').textContent = clickPower;
     document.getElementById('upgrade-cost').textContent = upgradeCost;
     document.getElementById('autoclicker-cost').textContent = autoclickerCost;
@@ -16,7 +16,7 @@ function updateDisplay() {
 
 // Функция для проверки достижений
 function checkAchievements() {
-    if (clickCount >= 1000 && !achievementUnlocked) {
+    if (balance >= 1000 && !achievementUnlocked) {
         const achievementBox = document.getElementById('achievement-box');
         const newAchievement = document.createElement('div');
         newAchievement.classList.add('achievement');
@@ -42,7 +42,7 @@ function createFallingCoin(x, y) {
 }
 
 document.getElementById('click-button').addEventListener('click', (event) => {
-    clickCount += clickPower;
+    balance += clickPower;
     updateDisplay();
     checkAchievements();
     // Создаем и анимируем маленькую монетку при нажатии
@@ -52,31 +52,31 @@ document.getElementById('click-button').addEventListener('click', (event) => {
 });
 
 document.getElementById('upgrade-button').addEventListener('click', () => {
-    if (clickCount >= upgradeCost) {
-        clickCount -= upgradeCost;
+    if (balance >= upgradeCost) {
+        balance -= upgradeCost;
         clickPower += 1;
         upgradeCost = Math.floor(upgradeCost * 1.5);
         updateDisplay();
     } else {
-        alert('Not enough clicks to upgrade!');
+        alert('Not enough balance to upgrade!');
     }
 });
 
 document.getElementById('autoclicker-button').addEventListener('click', () => {
-    if (clickCount >= autoclickerCost) {
-        clickCount -= autoclickerCost;
+    if (balance >= autoclickerCost) {
+        balance -= autoclickerCost;
         autoclickerCount += 1;
         autoclickerCost *= 10;
         updateDisplay();
     } else {
-        alert('Not enough clicks to buy autoclicker!');
+        alert('Not enough balance to buy autoclicker!');
     }
 });
 
 // Устанавливаем интервал для автокликеров
 setInterval(() => {
     if (autoclickerCount > 0) {
-        clickCount += autoclickerCount;
+        balance += autoclickerCount;
         updateDisplay();
         checkAchievements();
     }
@@ -84,4 +84,3 @@ setInterval(() => {
 
 // Изначально обновляем отображение
 updateDisplay();
-
