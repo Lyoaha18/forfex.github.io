@@ -12,6 +12,9 @@ function updateDisplay() {
     document.getElementById('upgrade-cost').textContent = upgradeCost;
     document.getElementById('autoclicker-cost').textContent = autoclickerCost;
     document.getElementById('autoclicker-count').textContent = autoclickerCount;
+
+    // Добавляем обновление окна баланса
+    document.getElementById('balance').textContent = clickCount;
 }
 
 // Функция для проверки достижений
@@ -46,6 +49,8 @@ document.getElementById('click-button').addEventListener('click', () => {
     updateDisplay();
     checkAchievements();
     createCoin();
+    // Добавляем обновление окна баланса
+    document.getElementById('balance').textContent = clickCount;
 });
 
 document.getElementById('upgrade-button').addEventListener('click', () => {
@@ -54,6 +59,8 @@ document.getElementById('upgrade-button').addEventListener('click', () => {
         clickPower += 1;
         upgradeCost = Math.floor(upgradeCost * 1.5);
         updateDisplay();
+        // Добавляем обновление окна баланса
+        document.getElementById('balance').textContent = clickCount;
     } else {
         alert('Not enough clicks to upgrade!');
     }
@@ -65,6 +72,8 @@ document.getElementById('autoclicker-button').addEventListener('click', () => {
         autoclickerCount += 1;
         autoclickerCost *= 10;
         updateDisplay();
+        // Добавляем обновление окна баланса
+        document.getElementById('balance').textContent = clickCount;
     } else {
         alert('Not enough clicks to buy autoclicker!');
     }
