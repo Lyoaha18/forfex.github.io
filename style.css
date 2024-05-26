@@ -1,14 +1,33 @@
-/* Основные стили */
-body, html {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    height: 100%;
-    background-color: transparent;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 700; /* Делаем текст жирным */
+/* Стили для кнопок */
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #ffffff; /* Белый текст */
+    background-color: transparent; /* Прозрачный фон */
 }
 
+.coin-button img {
+    animation: none; /* Убираем анимацию мигания только для изображений кнопок монеты */
+}
+
+/* Стили для кнопки монетки */
+.coin-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.coin-button img {
+    width: 300px;
+    height: 300px;
+    animation: none; /* Убираем анимацию мигания */
+}
+
+/* Стили для видео в качестве заднего фона */
 #background-video {
     position: fixed;
     top: 0;
@@ -18,6 +37,8 @@ body, html {
     object-fit: cover;
     z-index: -1;
 }
+
+/* Дополнительные стили из моего CSS */
 
 .container {
     padding: 20px;
@@ -30,73 +51,39 @@ body, html {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: center; /* Выравнивание по центру по горизонтали */
 }
 
-/* Стили для кнопок */
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    margin: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    color: #ffffff; /* Белый текст */
-    background-color: #007bff; /* Цвет фона кнопок */
-    transition: transform 0.1s ease;
-    animation: none !important; /* Убираем анимацию мигания */
-}
-
-/* Стили для кнопки монетки */
-.coin-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.1s ease;
-    animation: none !important; /* Убираем анимацию мигания */
-}
-
-.coin-button img {
-    width: 300px;
-    height: 300px;
-    transition: transform 0.1s ease;
-    animation: none !important; /* Убираем анимацию мигания */
-}
-
-/* Эффект продавливания при нажатии */
-button:active {
-    transform: scale(0.95);
-}
-
-.coin-button:active img {
-    transform: scale(0.95);
-}
-
-/* Стили для анимации падения маленькой монетки */
-@keyframes fall {
+/* Стили для анимации мигания кнопок */
+@keyframes pulse {
     0% {
-        opacity: 1;
-        transform: translateY(0);
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
     }
     100% {
-        opacity: 0;
-        transform: translateY(100vh);
+        transform: scale(1);
     }
 }
 
-.falling-coin {
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    animation: fall 1s linear forwards;
+button:hover, .coin-button:hover img {
+    animation: pulse 0.5s infinite alternate;
 }
 
-/* Дополнительные стили */
-#falling-coins-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
+/* Окно баланса */
+#balance-window {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #f0f0f0;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 18px;
+}
+
+#balance {
+    color: #333;
+    font-weight: bold;
 }
