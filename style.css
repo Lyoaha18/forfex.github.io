@@ -58,6 +58,13 @@ button {
     animation: none !important; /* Убираем анимацию мигания */
 }
 
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+    margin: 20px 0;
+}
+
 /* Стили для кнопки монетки */
 .coin-button {
     background: none;
@@ -111,3 +118,4 @@ button:active {
     height: 100%;
     pointer-events: none;
 }
+
