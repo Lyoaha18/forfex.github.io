@@ -79,3 +79,9 @@ setInterval(() => {
         balance += autoclickerCount;
         updateDisplay();
         checkAchievements();
+    }
+}, 1000);
+
+// Изначально обновляем отображение
+updateDisplay();
+
