@@ -46,9 +46,8 @@ document.getElementById('click-button').addEventListener('click', (event) => {
     updateDisplay();
     checkAchievements();
     // Создаем и анимируем маленькую монетку при нажатии
-    const rect = event.target.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
+    const x = event.clientX;
+    const y = event.clientY;
     createFallingCoin(x, y);
 });
 
