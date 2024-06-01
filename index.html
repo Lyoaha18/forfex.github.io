@@ -47,35 +47,31 @@
     <input type="number" id="betAmount" placeholder="Введите сумму">
   </div>
   <div>
-    <label for="chance">Шанс на победу (%):</label>
-    <input type="number" id="chance" placeholder="Введите шанс">
+    <label for="winPercentage">Процент выигрыша:</label>
+    <input type="number" id="winPercentage" placeholder="Введите процент">
   </div>
   <div>
-    <label for="multiplier">Процент на победу (%):</label>
-    <input type="number" id="multiplier" placeholder="Введите процент">
-  </div>
-  <div>
-    <button onclick="bet()">Поставить</button>
+    <button onclick="bet('more')">Больше</button>
+    <button onclick="bet('less')">Меньше</button>
   </div>
 
   <script>
     let balance = 100;
     
-    function bet() {
+    function bet(choice) {
       let betAmount = parseInt(document.getElementById('betAmount').value);
-      let chance = parseFloat(document.getElementById('chance').value);
-      let multiplier = parseFloat(document.getElementById('multiplier').value);
+      let winPercentage = parseInt(document.getElementById('winPercentage').value);
       
-      if (isNaN(betAmount) || betAmount <= 0 || betAmount > balance || isNaN(chance) || chance <= 0 || chance > 100 || isNaN(multiplier) || multiplier <= 0) {
+      if (isNaN(betAmount) || betAmount <= 0 || betAmount > balance || isNaN(winPercentage) || winPercentage <= 0 || winPercentage > 100) {
         alert('Пожалуйста, введите правильные данные.');
         return;
       }
 
       let randomNumber = Math.random() * 100; // Случайное число от 0 до 100
       
-      if (randomNumber <= chance) {
-        let winAmount = betAmount * (multiplier / 100);
-        balance += winAmount;
+      if ((choice === 'more' && randomNumber < winPercentage) || (choice === 'less' && randomNumber >= winPercentage)) {
+        let winAmount = betAmount * (100 / winPercentage);
+        balance += winAmount - betAmount;
         alert(`Вы выиграли! Ваш выигрыш: ${winAmount} грн`);
       } else {
         balance -= betAmount;
