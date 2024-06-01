@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Игра "Больше-меньше"</title>
+  <title>Рулетка</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -14,14 +14,38 @@
     h1 {
       color: #ff0;
     }
-    #balance {
+    #result {
       font-size: 24px;
       margin-top: 20px;
     }
-    #bet {
+    #roulette {
+      display: inline-block;
       margin-top: 20px;
+      position: relative;
     }
-    input[type="number"],
+    .number {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #666;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .green {
+      background-color: green;
+    }
+    .red {
+      background-color: red;
+    }
+    .black {
+      background-color: black;
+    }
     button {
       background-color: #333;
       color: #fff;
@@ -31,114 +55,39 @@
       cursor: pointer;
       transition: background-color 0.3s;
     }
-    input[type="number"]:focus {
-      outline: none;
-    }
     button:hover {
       background-color: #555;
-    }
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.5);
-    }
-    .modal-content {
-      background-color: #333;
-      margin: 15% auto;
-      padding: 20px;
-      border: 1px solid #888;
-      width: 80%;
-    }
-    .close {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-    }
-    .close:hover,
-    .close:focus {
-      color: #fff;
-      text-decoration: none;
-      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <h1>Игра "Больше-меньше"</h1>
-  <div id="balance">Баланс: 100 грн</div>
-  <div>
-    <label for="betAmount">Сумма ставки:</label>
-    <input type="number" id="betAmount" placeholder="Введите сумму">
+  <h1>Рулетка</h1>
+  <div id="roulette">
+    <div class="number green">0</div>
+    <div class="number red">1</div>
+    <div class="number black">2</div>
+    <!-- Добавьте остальные сектора рулетки по аналогии -->
   </div>
-  <div>
-    <label for="winPercentage">Процент выигрыша:</label>
-    <input type="number" id="winPercentage" placeholder="Введите процент">
-  </div>
-  <div>
-    <button onclick="bet('more')">Больше</button>
-    <button onclick="bet('less')">Меньше</button>
-  </div>
-  <button onclick="openAdmin()">Admin</button>
-
-  <!-- Модальное окно -->
-  <div id="adminModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeAdmin()">&times;</span>
-      <p>Функции администратора:</p>
-      <button onclick="resetBalance()">Сбросить баланс</button>
-    </div>
-  </div>
+  <button onclick="spin()">Играть</button>
+  <div id="result"></div>
 
   <script>
-    let balance = 100;
-    
-    function bet(choice) {
-      let betAmount = parseInt(document.getElementById('betAmount').value);
-      let winPercentage = parseInt(document.getElementById('winPercentage').value);
-      
-      if (isNaN(betAmount) || betAmount <= 0 || betAmount > balance || isNaN(winPercentage) || winPercentage <= 0 || winPercentage > 100) {
-        alert('Пожалуйста, введите правильные данные.');
-        return;
+    function spin() {
+      let numbers = Array.from({length: 37}, (_, i) => i); // Создаем массив чисел от 0 до 36
+      let result = numbers[Math.floor(Math.random() * numbers.length)]; // Случайным образом выбираем число
+      document.getElementById('result').textContent = `Выпало число: ${result}`;
+      highlightNumber(result);
+    }
+
+    function highlightNumber(number) {
+      let numberElements = document.getElementsByClassName('number');
+      for (let i = 0; i < numberElements.length; i++) {
+        numberElements[i].classList.remove('highlight');
+        if (parseInt(numberElements[i].textContent) === number) {
+          numberElements[i].classList.add('highlight');
+        }
       }
-
-      let randomNumber = Math.random() * 100; // Случайное число от 0 до 100
-      
-      if ((choice === 'more' && randomNumber < winPercentage) || (choice === 'less' && randomNumber >= winPercentage)) {
-        let winAmount = betAmount * (100 / winPercentage);
-        balance += winAmount - betAmount;
-        alert(`Вы выиграли! Ваш выигрыш: ${winAmount} грн`);
-      } else {
-        balance -= betAmount;
-        alert('Вы проиграли.');
-      }
-
-      updateBalance();
-    }
-
-    function updateBalance() {
-      document.getElementById('balance').textContent = 'Баланс: ' + balance + ' грн';
-    }
-
-    function openAdmin() {
-      document.getElementById('adminModal').style.display = 'block';
-    }
-
-    function closeAdmin() {
-      document.getElementById('adminModal').style.display = 'none';
-    }
-
-    function resetBalance() {
-      balance = 100;
-      updateBalance();
-      alert('Баланс сброшен до 100 грн.');
     }
   </script>
 </body>
 </html>
-
