@@ -1,38 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clicker Game</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Игра "Больше-меньше"</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    #balance {
+      font-size: 24px;
+      margin-top: 20px;
+    }
+    #bet {
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
-    <!-- Видео в качестве заднего фона -->
-    <video autoplay muted loop id="background-video">
-        <source src="video/fon.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
+  <h1>Игра "Больше-меньше"</h1>
+  <div id="balance">Баланс: 100 грн</div>
+  <div id="bet">
+    <input type="number" id="betAmount" placeholder="Сумма ставки">
+    <button onclick="bet('more')">Больше</button>
+    <button onclick="bet('less')">Меньше</button>
+  </div>
 
-    <div class="container">
-        <h1>Clicker Game</h1>
-        <div class="balance-box">
-            <p>Баланс: <span id="click-count">0</span></p>
-        </div>
-        <button id="click-button" class="coin-button">
-            <img src="images/coin.png" alt="Click me!" draggable="false">
-        </button>
-        <div class="button-container">
-            <button id="upgrade-button">Upgrade (Cost: <span id="upgrade-cost">10</span>)</button>
-            <button id="autoclicker-button">Buy Autoclicker (Cost: <span id="autoclicker-cost">100</span>)</button>
-        </div>
-        <p>Click Power: <span id="click-power">1</span></p>
-        <p>Autoclicker: <span id="autoclicker-count">0</span></p>
-    </div>
-    <!-- Добавленный элемент для отображения достижений -->
-    <div id="achievement-box"></div>
-    <!-- Контейнер для падающих монеток -->
-    <div id="falling-coins-container"></div>
-    <script src="script.js"></script>
+  <script>
+    let balance = 100;
+    
+    function bet(choice) {
+      let betAmount = parseInt(document.getElementById('betAmount').value);
+      if (isNaN(betAmount) || betAmount <= 0 || betAmount > balance) {
+        alert('Пожалуйста, введите правильную сумму ставки.');
+        return;
+      }
+
+      let randomNumber = Math.floor(Math.random() * 10) + 1; // Случайное число от 1 до 10
+      
+      if ((choice === 'more' && randomNumber > 5) || (choice === 'less' && randomNumber <= 5)) {
+        balance += betAmount;
+        alert('Вы выиграли!');
+      } else {
+        balance -= betAmount;
+        alert('Вы проиграли.');
+      }
+
+      updateBalance();
+    }
+
+    function updateBalance() {
+      document.getElementById('balance').textContent = 'Баланс: ' + balance + ' грн';
+    }
+  </script>
 </body>
 </html>
