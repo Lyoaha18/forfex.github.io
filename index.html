@@ -14,10 +14,6 @@
     h1 {
       color: #ff0;
     }
-    #result {
-      font-size: 24px;
-      margin-top: 20px;
-    }
     #roulette {
       display: inline-block;
       margin-top: 20px;
@@ -35,7 +31,8 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%) rotate(0deg);
+      transition: transform 3s ease-in-out;
     }
     .green {
       background-color: green;
@@ -68,15 +65,47 @@
     <div class="number black">2</div>
     <!-- Добавьте остальные сектора рулетки по аналогии -->
   </div>
-  <button onclick="spin()">Играть</button>
-  <div id="result"></div>
+  <div>
+    <label for="betAmount">Сумма ставки:</label>
+    <input type="number" id="betAmount" placeholder="Введите сумму">
+    <button onclick="spin()">Играть</button>
+  </div>
+  <div>
+    <label for="balance">Баланс:</label>
+    <span id="balance">100</span> грн
+  </div>
 
   <script>
+    let balance = 100;
+    let isSpinning = false;
+
     function spin() {
-      let numbers = Array.from({length: 37}, (_, i) => i); // Создаем массив чисел от 0 до 36
-      let result = numbers[Math.floor(Math.random() * numbers.length)]; // Случайным образом выбираем число
-      document.getElementById('result').textContent = `Выпало число: ${result}`;
-      highlightNumber(result);
+      if (isSpinning) return;
+      
+      let betAmount = parseInt(document.getElementById('betAmount').value);
+      if (isNaN(betAmount) || betAmount <= 0 || betAmount > balance) {
+        alert('Пожалуйста, введите правильную сумму ставки.');
+        return;
+      }
+
+      isSpinning = true;
+      let roulette = document.getElementById('roulette');
+      let randomNumber = Math.floor(Math.random() * 37); // Случайное число от 0 до 36
+      let angle = randomNumber * (360 / 37); // Вычисляем угол поворота для выбранного числа
+      roulette.style.transform = `rotate(${angle + 720}deg)`; // Вращаем рулетку на два оборота плюс угол для выбранного числа
+
+      setTimeout(() => {
+        displayResult(randomNumber);
+        isSpinning = false;
+      }, 3000); // Ждем 3 секунды (время вращения рулетки)
+      
+      balance -= betAmount;
+      updateBalance();
+    }
+
+    function displayResult(number) {
+      document.getElementById('result').textContent = `Выпало число: ${number}`;
+      highlightNumber(number);
     }
 
     function highlightNumber(number) {
@@ -87,6 +116,10 @@
           numberElements[i].classList.add('highlight');
         }
       }
+    }
+
+    function updateBalance() {
+      document.getElementById('balance').textContent = balance;
     }
   </script>
 </body>
