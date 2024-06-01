@@ -8,6 +8,11 @@
     body {
       font-family: Arial, sans-serif;
       text-align: center;
+      background-color: #222;
+      color: #fff;
+    }
+    h1 {
+      color: #ff0;
     }
     #balance {
       font-size: 24px;
@@ -15,6 +20,22 @@
     }
     #bet {
       margin-top: 20px;
+    }
+    input[type="number"],
+    button {
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    input[type="number"]:focus {
+      outline: none;
+    }
+    button:hover {
+      background-color: #555;
     }
   </style>
 </head>
