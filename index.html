@@ -3,96 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Casino Game</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #1c1c1c;
-            color: #fff;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
-        .container {
-            text-align: center;
-            background-color: #2a2a2a;
-            padding: 20px;
-            border-radius: 10px;
-        }
-        .header {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            padding: 10px;
-            background-color: #333;
-            border-bottom: 1px solid #444;
-        }
-        .header div {
-            display: flex;
-            align-items: center;
-        }
-        .header div img {
-            border-radius: 50%;
-            margin-right: 10px;
-        }
-        .game {
-            margin-top: 20px;
-        }
-        .game h1 {
-            font-size: 24px;
-        }
-        .game .result {
-            font-size: 48px;
-            margin: 20px 0;
-        }
-        .game .buttons {
-            display: flex;
-            justify-content: center;
-        }
-        .game .buttons button {
-            background-color: #f0a500;
-            border: none;
-            padding: 10px 20px;
-            margin: 0 10px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .bet-section {
-            margin-top: 20px;
-        }
-        .bet-section input {
-            padding: 10px;
-            margin-right: 10px;
-        }
-    </style>
+    <title>Космический летательный симулятор</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="header">
-        <div>
-            <img src="profile-pic-url.jpg" alt="Profile Picture" width="40" height="40">
-            <span>64</span>
-        </div>
-        <div>
-            <span>drgnu.casino</span>
-        </div>
-    </div>
-    <div class="container">
-        <div class="game">
-            <h1>Нvuti game</h1>
-            <div class="result">18</div>
-            <div class="buttons">
-                <button>Меньше</button>
-                <button>Больше</button>
-            </div>
-            <div class="result-message">Вам выпало: 488468</div>
-        </div>
-        <div class="bet-section">
-            <input type="text" placeholder="Ставка">
-            <input type="text" placeholder="Процент">
-        </div>
-    </div>
+    <canvas id="gameCanvas"></canvas>
+    <script src="game.js"></script>
 </body>
 </html>
