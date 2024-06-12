@@ -12,11 +12,15 @@
         <!-- Game board will be inserted here -->
     </div>
     <div id="controls">
-        <label for="bet">Bet Amount:</label>
-        <input type="number" id="bet" min="1" value="10">
-        <label for="mines">Number of Mines:</label>
-        <input type="number" id="mines" min="1" max="10" value="2">
-        <button id="start">Start Game</button>
+        <label for="bet">Ставка:</label>
+        <input type="range" id="bet" min="10" max="1000" step="10" value="100" oninput="updateBetValue(this.value)">
+        <span id="betValue">100,00 ₽</span>
+
+        <label for="mines">Кол. мин:</label>
+        <input type="range" id="mines" min="1" max="10" value="2" oninput="updateMinesValue(this.value)">
+        <span id="minesValue">2</span>
+
+        <button id="start">СТАВКА</button>
     </div>
     <div id="result"></div>
     <script src="script.js"></script>
