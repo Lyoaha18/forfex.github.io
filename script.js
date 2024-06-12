@@ -1,46 +1,51 @@
-const canvas = document.getElementById('gameCanvas');
-const ctx = canvas.getContext('2d');
+document.getElementById('start').addEventListener('click', startGame);
 
-// Инициализация корабля
-const ship = {
-    x: 50,
-    y: canvas.height / 2,
-    radius: 20,
-    color: 'white'
-};
+function startGame() {
+    const betAmount = document.getElementById('bet').value;
+    const numberOfMines = document.getElementById('mines').value;
+    const gameBoard = document.getElementById('game');
+    gameBoard.innerHTML = '';
+    const cells = [];
 
-// Функция для отрисовки корабля
-function drawShip() {
-    ctx.beginPath();
-    ctx.arc(ship.x, ship.y, ship.radius, 0, Math.PI * 2);
-    ctx.fillStyle = ship.color;
-    ctx.fill();
-    ctx.closePath();
-}
-
-// Функция для обновления игрового экрана
-function update() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawShip();
-    requestAnimationFrame(update);
-}
-
-// Обработчик нажатия клавиш для управления кораблем
-document.addEventListener('keydown', function(event) {
-    switch(event.keyCode) {
-        case 37: // Left arrow
-            ship.x -= 5;
-            break;
-        case 39: // Right arrow
-            ship.x += 5;
-            break;
-        case 38: // Up arrow
-            ship.y -= 5;
-            break;
-        case 40: // Down arrow
-            ship.y += 5;
-            break;
+    // Create cells
+    for (let i = 0; i < 100; i++) {
+        const cell = document.createElement('div');
+        cell.classList.add('cell');
+        cell.addEventListener('click', () => revealCell(cell, i));
+        gameBoard.appendChild(cell);
+        cells.push(cell);
     }
-});
 
-update();
+    // Place mines
+    let minesPlaced = 0;
+    while (minesPlaced < numberOfMines) {
+        const randomIndex = Math.floor(Math.random() * 100);
+        if (!cells[randomIndex].classList.contains('mine')) {
+            cells[randomIndex].classList.add('mine');
+            minesPlaced++;
+        }
+    }
+
+    document.getElementById('result').textContent = `Bet Amount: ${betAmount}`;
+}
+
+function revealCell(cell, index) {
+    if (cell.classList.contains('revealed')) return;
+    cell.classList.add('revealed');
+    if (cell.classList.contains('mine')) {
+        document.getElementById('result').textContent = 'You lost!';
+    } else {
+        cell.textContent = countAdjacentMines(index);
+    }
+}
+
+function countAdjacentMines(index) {
+    const adjacentIndices = [
+        index - 11, index - 10, index - 9,
+        index - 1,             index + 1,
+        index + 9,  index + 10, index + 11
+    ];
+    return adjacentIndices.reduce((count, i) => {
+        return count + (document.querySelectorAll('.cell')[i]?.classList.contains('mine') ? 1 : 0);
+    }, 0);
+}
