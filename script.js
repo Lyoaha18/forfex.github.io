@@ -8,7 +8,7 @@ function startGame() {
     const cells = [];
 
     // Create cells
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 25; i++) {  // 5x5 grid
         const cell = document.createElement('div');
         cell.classList.add('cell');
         cell.addEventListener('click', () => revealCell(cell, i));
@@ -19,33 +19,31 @@ function startGame() {
     // Place mines
     let minesPlaced = 0;
     while (minesPlaced < numberOfMines) {
-        const randomIndex = Math.floor(Math.random() * 100);
+        const randomIndex = Math.floor(Math.random() * 25);
         if (!cells[randomIndex].classList.contains('mine')) {
             cells[randomIndex].classList.add('mine');
             minesPlaced++;
         }
     }
 
-    document.getElementById('result').textContent = `Bet Amount: ${betAmount}`;
+    document.getElementById('result').textContent = `Ставка: ${betAmount} ₽`;
 }
 
 function revealCell(cell, index) {
     if (cell.classList.contains('revealed')) return;
     cell.classList.add('revealed');
     if (cell.classList.contains('mine')) {
-        document.getElementById('result').textContent = 'You lost!';
+        cell.innerHTML = '<img src="images/mine.png" alt="Mine">';
+        document.getElementById('result').textContent = 'Вы проиграли!';
     } else {
-        cell.textContent = countAdjacentMines(index);
+        cell.innerHTML = '<img src="images/gem.png" alt="Gem">';
     }
 }
 
-function countAdjacentMines(index) {
-    const adjacentIndices = [
-        index - 11, index - 10, index - 9,
-        index - 1,             index + 1,
-        index + 9,  index + 10, index + 11
-    ];
-    return adjacentIndices.reduce((count, i) => {
-        return count + (document.querySelectorAll('.cell')[i]?.classList.contains('mine') ? 1 : 0);
-    }, 0);
+function updateBetValue(value) {
+    document.getElementById('betValue').textContent = `${value},00 ₽`;
+}
+
+function updateMinesValue(value) {
+    document.getElementById('minesValue').textContent = value;
 }
