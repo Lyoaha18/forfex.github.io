@@ -33,10 +33,10 @@ function revealCell(cell, index) {
     if (cell.classList.contains('revealed')) return;
     cell.classList.add('revealed');
     if (cell.classList.contains('mine')) {
-        cell.innerHTML = '<img src="images/mine.png" alt="Mine">';
+        cell.innerHTML = '<img src="imgame/mina.png" alt="Mine">';
         document.getElementById('result').textContent = 'Вы проиграли!';
     } else {
-        cell.innerHTML = '<img src="images/gem.png" alt="Gem">';
+        cell.innerHTML = '<img src="imgame/almaz.png" alt="Gem">';
     }
 }
 
