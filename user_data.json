@@ -1,9 +1,3 @@
 {
-  "username": "example_user",
-  "coins": 0,
-  "upgrades": {
-    "speed": 1,
-    "power": 1,
-    "armor": 0
-  }
+  "coins": 0
 }
