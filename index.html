@@ -3,41 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Кликер с монетками</title>
+  <title>Простая игра: кликер монеток</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       text-align: center;
+      margin: 50px;
     }
     .game-container {
-      margin-top: 50px;
-    }
-    .coins {
-      font-size: 24px;
-      margin-bottom: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     .button {
       display: inline-block;
       padding: 10px 20px;
       background-color: #4CAF50;
       color: white;
-      text-decoration: none;
+      font-size: 18px;
+      border: none;
       cursor: pointer;
+      margin-bottom: 20px;
     }
     .button:hover {
       background-color: #45a049;
     }
+    .coins {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
   </style>
 </head>
 <body>
-  <h1>Кликер с монетками</h1>
   <div class="game-container">
+    <h1>Кликер монеток</h1>
+    <button id="clickButton" class="button">Кликай здесь, чтобы копить монетки!</button>
     <p class="coins">Монетки: <span id="coinCount">0</span></p>
-    <button id="clickButton" class="button">Кликай на монетки!</button>
-    <p>Улучшения:</p>
-    <button id="upgradeSpeed" class="button">Улучшить скорость</button>
-    <button id="upgradePower" class="button">Улучшить силу</button>
-    <button id="upgradeArmor" class="button">Улучшить броню</button>
   </div>
 
   <script src="script.js"></script>
