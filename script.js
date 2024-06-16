@@ -1,59 +1,102 @@
-let coinCount = 0; // Переменная для хранения количества монеток
-const userDataFile = 'user_data.json'; // Путь к JSON файлу
+let balance = 0;
+let clickPower = 1;
+let upgradeCost = 10;
+let autoclickerCost = 100;
+let autoclickerCount = 0;
+let achievementUnlocked = false;
 
-// Функция для обновления количества монеток на странице
-function updateCoinCount() {
-  document.getElementById('coinCount').textContent = coinCount;
-  saveDataToJson(); // Сохраняем данные в JSON файл при каждом обновлении
+// Функция для обновления отображаемых значений
+function updateDisplay() {
+    document.getElementById('click-count').textContent = balance;
+    document.getElementById('click-power').textContent = clickPower;
+    document.getElementById('upgrade-cost').textContent = upgradeCost;
+    document.getElementById('autoclicker-cost').textContent = autoclickerCost;
+    document.getElementById('autoclicker-count').textContent = autoclickerCount;
 }
 
-// Функция для сохранения данных в JSON файл
-function saveDataToJson() {
-  fetch(userDataFile, {
-    method: 'POST', // Используем метод POST вместо PUT
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ coins: coinCount }), // Сохраняем только количество монеток
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Ошибка сохранения данных');
+// Функция для проверки достижений
+function checkAchievements() {
+    if (balance >= 1000 && !achievementUnlocked) {
+        const achievementBox = document.getElementById('achievement-box');
+        const newAchievement = document.createElement('div');
+        newAchievement.classList.add('achievement');
+        newAchievement.textContent = 'НОВОЕ ДОСТИЖЕНИЕ: ЕБАТЬ ТЫ КЛИКОДОЛБИК НАКЛИКАЛ 1000 раз!';
+        achievementBox.appendChild(newAchievement);
+        achievementUnlocked = true;
     }
-    console.log('Данные успешно сохранены в JSON файл');
-  })
-  .catch(error => {
-    console.error('Ошибка сохранения данных в JSON файл:', error);
-  });
 }
 
-// Функция для загрузки данных из JSON файла
-function loadDataFromJson() {
-  fetch(userDataFile)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Ошибка загрузки данных');
-      }
-      return response.json();
-    })
-    .then(data => {
-      if (data.coins !== undefined) {
-        coinCount = data.coins;
-        updateCoinCount(); // Обновляем отображение после загрузки данных
-      }
-    })
-    .catch(error => {
-      console.error('Ошибка загрузки данных из JSON файла:', error);
+// Функция для создания и анимации маленькой монетки
+function createFallingCoin(x, y) {
+    const fallingCoin = document.createElement('img');
+    fallingCoin.src = 'images/coin.png';
+    fallingCoin.classList.add('falling-coin');
+    fallingCoin.style.left = `${x}px`;
+    fallingCoin.style.top = `${y}px`;
+    document.getElementById('falling-coins-container').appendChild(fallingCoin);
+
+    // Удаляем монетку после завершения анимации
+    fallingCoin.addEventListener('animationend', () => {
+        fallingCoin.remove();
     });
 }
 
-// Загрузка сохранённых данных при загрузке страницы
-document.addEventListener('DOMContentLoaded', () => {
-  loadDataFromJson(); // Загружаем данные из JSON файла при загрузке страницы
+document.getElementById('click-button').addEventListener('click', (event) => {
+    balance += clickPower;
+    updateDisplay();
+    checkAchievements();
+    // Создаем и анимируем маленькую монетку при нажатии
+    const x = event.clientX;
+    const y = event.clientY;
+    createFallingCoin(x, y);
 });
 
-// Обработчик клика по кнопке
-document.getElementById('clickButton').addEventListener('click', () => {
-  coinCount++; // Увеличиваем количество монеток при клике
-  updateCoinCount(); // Обновляем отображение количества монеток
+document.getElementById('upgrade-button').addEventListener('click', () => {
+    if (balance >= upgradeCost) {
+        balance -= upgradeCost;
+        clickPower += 1;
+        upgradeCost = Math.floor(upgradeCost * 1.5);
+        updateDisplay();
+        saveProgress(); // Сохраняем прогресс после каждого обновления
+    } else {
+        alert('Not enough balance to upgrade!');
+    }
 });
+
+document.getElementById('autoclicker-button').addEventListener('click', () => {
+    if (balance >= autoclickerCost) {
+        balance -= autoclickerCost;
+        autoclickerCount += 1;
+        autoclickerCost *= 10;
+        updateDisplay();
+        saveProgress(); // Сохраняем прогресс после каждого обновления
+    } else {
+        alert('Not enough balance to buy autoclicker!');
+    }
+});
+
+// Устанавливаем интервал для автокликеров
+setInterval(() => {
+    if (autoclickerCount > 0) {
+        balance += autoclickerCount;
+        updateDisplay();
+        checkAchievements();
+        saveProgress(); // Сохраняем прогресс после каждого обновления
+    }
+}, 1000);
+
+// Функция для сохранения прогресса игры
+function saveProgress() {
+    // Создаем объект XMLHttpRequest для отправки AJAX-запроса
+    var xhr = new XMLHttpRequest();
+    // Устанавливаем метод и URL-адрес запроса
+    xhr.open("POST", "save_progress.php", true);
+    // Устанавливаем заголовок Content-Type
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    // Создаем строку данных для отправки
+    var data = "balance=" + balance +
+               "&clickPower=" + clickPower +
+               "&autoclickerCount=" + autoclickerCount;
+    // Отправляем запрос с данными
+    xhr.send(data);
+}
