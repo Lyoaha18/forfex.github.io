@@ -1,49 +1,73 @@
-document.getElementById('start').addEventListener('click', startGame);
+// Загрузка данных пользователя при загрузке страницы
+fetch('user_data.json')
+  .then(response => response.json())
+  .then(data => {
+    updateUI(data);
+  })
+  .catch(error => {
+    console.error('Ошибка загрузки данных:', error);
+  });
 
-function startGame() {
-    const betAmount = document.getElementById('bet').value;
-    const numberOfMines = document.getElementById('mines').value;
-    const gameBoard = document.getElementById('game');
-    gameBoard.innerHTML = '';
-    const cells = [];
-
-    // Create cells
-    for (let i = 0; i < 25; i++) {  // 5x5 grid
-        const cell = document.createElement('div');
-        cell.classList.add('cell');
-        cell.addEventListener('click', () => revealCell(cell, i));
-        gameBoard.appendChild(cell);
-        cells.push(cell);
-    }
-
-    // Place mines
-    let minesPlaced = 0;
-    while (minesPlaced < numberOfMines) {
-        const randomIndex = Math.floor(Math.random() * 25);
-        if (!cells[randomIndex].classList.contains('mine')) {
-            cells[randomIndex].classList.add('mine');
-            minesPlaced++;
-        }
-    }
-
-    document.getElementById('result').textContent = `Ставка: ${betAmount} ₽`;
+// Сохранение данных пользователя
+function saveUserData(userData) {
+  fetch('user_data.json', {
+    method: 'PUT', // или 'POST'
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(userData),
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Данные успешно сохранены:', data);
+  })
+  .catch(error => {
+    console.error('Ошибка сохранения данных:', error);
+  });
 }
 
-function revealCell(cell, index) {
-    if (cell.classList.contains('revealed')) return;
-    cell.classList.add('revealed');
-    if (cell.classList.contains('mine')) {
-        cell.innerHTML = '<img src="imgame/mina.png" alt="Mine">';
-        document.getElementById('result').textContent = 'Вы проиграли!';
-    } else {
-        cell.innerHTML = '<img src="imgame/almaz.png" alt="Gem">';
-    }
+// Обновление интерфейса игры
+function updateUI(userData) {
+  document.getElementById('coinCount').textContent = userData.coins;
 }
 
-function updateBetValue(value) {
-    document.getElementById('betValue').textContent = `${value},00 ₽`;
-}
+// Инициализация кнопки клика
+document.getElementById('clickButton').addEventListener('click', () => {
+  userData.coins += 1; // Увеличиваем количество монет при клике
+  saveUserData(userData); // Сохраняем данные пользователя
+  updateUI(userData); // Обновляем интерфейс
+});
 
-function updateMinesValue(value) {
-    document.getElementById('minesValue').textContent = value;
-}
+// Инициализация кнопок улучшений
+document.getElementById('upgradeSpeed').addEventListener('click', () => {
+  if (userData.coins >= 10) {
+    userData.coins -= 10;
+    userData.upgrades.speed += 1;
+    saveUserData(userData);
+    updateUI(userData);
+  } else {
+    alert('Недостаточно монет для улучшения!');
+  }
+});
+
+document.getElementById('upgradePower').addEventListener('click', () => {
+  if (userData.coins >= 15) {
+    userData.coins -= 15;
+    userData.upgrades.power += 1;
+    saveUserData(userData);
+    updateUI(userData);
+  } else {
+    alert('Недостаточно монет для улучшения!');
+  }
+});
+
+document.getElementById('upgradeArmor').addEventListener('click', () => {
+  if (userData.coins >= 20) {
+    userData.coins -= 20;
+    userData.upgrades.armor += 1;
+    saveUserData(userData);
+    updateUI(userData);
+  } else {
+    alert('Недостаточно монет для улучшения!');
+  }
+});
