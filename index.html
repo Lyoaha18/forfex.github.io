@@ -1,28 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minesweeper Betting Game</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Кликер с монетками</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    .game-container {
+      margin-top: 50px;
+    }
+    .coins {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .button:hover {
+      background-color: #45a049;
+    }
+  </style>
 </head>
 <body>
-    <h1>Minesweeper Betting Game</h1>
-    <div id="game">
-        <!-- Game board will be inserted here -->
-    </div>
-    <div id="controls">
-        <label for="bet">Ставка:</label>
-        <input type="range" id="bet" min="10" max="1000" step="10" value="100" oninput="updateBetValue(this.value)">
-        <span id="betValue">100,00 ₽</span>
+  <h1>Кликер с монетками</h1>
+  <div class="game-container">
+    <p class="coins">Монетки: <span id="coinCount">0</span></p>
+    <button id="clickButton" class="button">Кликай на монетки!</button>
+    <p>Улучшения:</p>
+    <button id="upgradeSpeed" class="button">Улучшить скорость</button>
+    <button id="upgradePower" class="button">Улучшить силу</button>
+    <button id="upgradeArmor" class="button">Улучшить броню</button>
+  </div>
 
-        <label for="mines">Кол. мин:</label>
-        <input type="range" id="mines" min="1" max="10" value="2" oninput="updateMinesValue(this.value)">
-        <span id="minesValue">2</span>
-
-        <button id="start">СТАВКА</button>
-    </div>
-    <div id="result"></div>
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
