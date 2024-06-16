@@ -10,7 +10,7 @@ function updateCoinCount() {
 // Функция для сохранения данных в JSON файл
 function saveDataToJson() {
   fetch(userDataFile, {
-    method: 'PUT', // Используем метод PUT для обновления файла
+    method: 'POST', // Используем метод POST вместо PUT
     headers: {
       'Content-Type': 'application/json',
     },
