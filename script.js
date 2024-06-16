@@ -49,7 +49,7 @@ function loadDataFromJson() {
 
 // Загрузка сохранённых данных при загрузке страницы
 document.addEventListener('DOMContentLoaded', () => {
-  loadDataFromJson();
+  loadDataFromJson(); // Загружаем данные из JSON файла при загрузке страницы
 });
 
 // Обработчик клика по кнопке
