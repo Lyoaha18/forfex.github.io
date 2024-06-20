@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeModal = document.querySelector('.close');
 
     purchaseBtn.addEventListener('click', function() {
+        modal.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'; // Прозрачный черный фон
         modal.style.display = 'block';
     });
 
