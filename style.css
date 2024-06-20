@@ -1,111 +1,91 @@
-/* Общие стили для body и html */
-body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: hidden; /* Запрет прокрутки */
+@import url("https://fonts.googleapis.com/css?family=Rubik:700&display=swap");
+
+/* Обнуление стилей и установка шрифта */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-/* Стили для фонового видео */
+body {
+  font-family: "Rubik", sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #fff;
+}
+
 .background-wrap {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 #background-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Заполнение видео без искажений */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-/* Стили для центрированной кнопки */
 .centered-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    z-index: 1; /* Поверх видео */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 1;
 }
 
-/* Стили для кнопки "Приобрести товар" */
-button {
-    padding: 15px 30px;
-    font-size: 18px;
-    background-color: transparent;
-    border: 2px solid transparent;
-    color: #ffffff;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    outline: none;
-    z-index: 2; /* Поверх видео и контейнера */
+button.btn {
+  font-weight: 600;
+  color: #382b22;
+  text-transform: uppercase;
+  padding: 1.25em 2em;
+  background: #fff0f0;
+  border: 2px solid #b18597;
+  border-radius: 0.75em;
+  transition: transform 0.15s, background-color 0.3s;
+  cursor: pointer;
+  outline: none;
+  position: relative;
 }
 
-button:hover {
-    border-color: #ffffff;
+button.btn::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: #f9c4d2;
+  border-radius: inherit;
+  box-shadow: 0 0 0 2px #b18597, 0 0.625em 0 0 #ffe3e2;
+  transform: translate3d(0, 0.75em, -1em);
+  transition: transform 0.15s, box-shadow 0.15s;
 }
 
-button::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 300%;
-    height: 300%;
-    background-color: rgba(255, 255, 255, 0.1);
-    transition: all 0.5s ease;
-    border-radius: 50%;
-    z-index: -1; /* Под видео */
-    transform: translate(-50%, -50%);
+button.btn:hover {
+  background: #ffe9e9;
+  transform: translate(0, 0.25em);
 }
 
-button:hover::before {
-    width: 0;
-    height: 0;
+button.btn:hover::before {
+  box-shadow: 0 0 0 2px #b18597, 0 0.5em 0 0 #ffe3e2;
+  transform: translate3d(0, 0.5em, -1em);
 }
 
-/* Стили для модального окна */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 999;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.5); /* Прозрачный черный фон */
-    backdrop-filter: blur(10px); /* Эффект размытия фона */
-    -webkit-backdrop-filter: blur(10px); /* Для Safari */
-    padding: 20px;
-    border-radius: 10px;
+button.btn:active {
+  background: #ffe9e9;
+  transform: translate(0em, 0.75em);
 }
 
-.modal-content {
-    background-color: rgba(255, 255, 255, 0.8); /* Частично прозрачный белый фон */
-    padding: 20px;
-    width: 100%;
-    max-width: 600px; /* Максимальная ширина окна */
-    text-align: center;
-    border-radius: 10px;
-}
-
-.close {
-    color: #aaaaaa;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.close:hover,
-.close:focus {
-    color: #000000;
-    text-decoration: none;
-    cursor: pointer;
+button.btn:active::before {
+  box-shadow: 0 0 0 2px #b18597, 0 0 #ffe3e2;
+  transform: translate3d(0, 0, -1em);
 }
