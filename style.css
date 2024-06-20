@@ -21,7 +21,7 @@ body, html {
 }
 
 .centered-container {
-    position: fixed;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -39,6 +39,7 @@ button {
     position: relative;
     overflow: hidden;
     outline: none;
+    z-index: 2; /* Поверх видео и контейнера */
 }
 
 button:hover {
@@ -55,7 +56,7 @@ button::before {
     background-color: rgba(255, 255, 255, 0.1);
     transition: all 0.5s ease;
     border-radius: 50%;
-    z-index: -1; /* Поместить эффект под кнопку */
+    z-index: -1; /* Под видео */
     transform: translate(-50%, -50%);
 }
 
@@ -99,3 +100,4 @@ button:hover::before {
     text-decoration: none;
     cursor: pointer;
 }
+
