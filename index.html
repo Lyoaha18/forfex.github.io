@@ -3,83 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clicker Game</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap">
+    <title>Infinity Free Shop</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Видео в качестве заднего фона -->
-    <video autoplay muted loop id="background-video">
-        <source src="video/fon.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-
-    <div class="container">
-        <h1>Clicker Game</h1>
-        <div class="balance-box">
-            <p>Баланс: <span id="click-count">0</span></p>
-        </div>
-        <button id="click-button" class="coin-button">
-            <img src="images/coin.png" alt="Click me!" draggable="false">
-        </button>
-        <div class="button-container">
-            <button id="upgrade-button">Upgrade (Cost: <span id="upgrade-cost">10</span>)</button>
-            <button id="autoclicker-button">Buy Autoclicker (Cost: <span id="autoclicker-cost">100</span>)</button>
-        </div>
-        <p>Click Power: <span id="click-power">1</span></p>
-        <p>Autoclicker: <span id="autoclicker-count">0</span></p>
+    <div class="background-wrap">
+        <video autoplay muted loop id="background-video">
+            <source src="video/fon.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
     </div>
-    <!-- Добавленный элемент для отображения достижений -->
-    <div id="achievement-box"></div>
-    <!-- Контейнер для падающих монеток -->
-    <div id="falling-coins-container"></div>
+
+    <div class="centered-container">
+        <button id="purchaseBtn">Приобрести товар</button>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Приобрести Софт</p>
+        </div>
+    </div>
+
     <script src="script.js"></script>
-
-    <script>
-        // Функция для сохранения прогресса игры на сервере
-        function saveProgress(balance) {
-            // Создаем объект XMLHttpRequest для отправки AJAX-запроса
-            var xhr = new XMLHttpRequest();
-            // Устанавливаем метод и URL-адрес запроса
-            xhr.open("POST", "save_progress.php", true);
-            // Устанавливаем заголовок Content-Type
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            // Создаем строку данных для отправки
-            var data = "balance=" + balance;
-            // Отправляем запрос с данными
-            xhr.send(data);
-        }
-
-        // Функция для загрузки прогресса игры с сервера
-        function loadProgress() {
-            // Создаем объект XMLHttpRequest для отправки AJAX-запроса
-            var xhr = new XMLHttpRequest();
-            // Устанавливаем метод и URL-адрес запроса
-            xhr.open("GET", "load_progress.php", true);
-            // Отправляем запрос
-            xhr.send();
-            // Обрабатываем ответ от сервера
-            xhr.onreadystatechange = function() {
-                // Проверяем состояние запроса
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    // Получаем ответ от сервера
-                    var response = xhr.responseText;
-                    // Обновляем баланс игрока на основе ответа
-                    document.getElementById("click-count").textContent = response;
-                }
-            };
-        }
-
-        // Вызываем функцию загрузки прогресса игры при загрузке страницы
-        window.onload = function() {
-            loadProgress();
-        };
-
-        // Вызываем функцию сохранения прогресса игры при закрытии страницы
-        window.onbeforeunload = function() {
-            var balance = document.getElementById("click-count").textContent;
-            saveProgress(balance);
-        };
-    </script>
 </body>
 </html>
